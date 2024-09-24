@@ -73,7 +73,7 @@ export default function LoginPage() {
         </CardContent>
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
-            Don't have an account? Contact your administrator.
+            Dont have an account? Contact your administrator.
           </p>
         </CardFooter>
       </Card>

@@ -20,7 +20,7 @@ export default function Home() {
   }
 
   if (!isAuthenticated) {
-    return <LoginPage onLogin={login} />
+return <LoginPage />; 
   }
 
   return (

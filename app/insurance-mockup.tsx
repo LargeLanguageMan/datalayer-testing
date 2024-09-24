@@ -13,8 +13,8 @@ import {
 import { Search, PawPrint, Heart, ClipboardPlus } from "lucide-react"
 
 export default function InsuranceMockup() {
-  const [showPopup, setShowPopup] = useState(false)
-  const [popupContent, setPopupContent] = useState("")
+  //const [showPopup, setShowPopup] = useState(false)
+  //const [popupContent, setPopupContent] = useState("")
   if (typeof window !== "undefined" && !window.digitalData) {
     window.digitalData = []
   }
@@ -184,12 +184,8 @@ export default function InsuranceMockup() {
         </Accordion>
       </section>
 
-      {/* Popup */}
-      {showPopup && (
-        <div className="fixed bottom-4 right-4 bg-secondary text-secondary-foreground p-4 rounded-md shadow-lg">
-          {popupContent}
-        </div>
-      )}
+      
+     
     </div>
   )
 }

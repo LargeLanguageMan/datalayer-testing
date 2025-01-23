@@ -13,88 +13,53 @@ import {
 import { Search, PawPrint, Heart, ClipboardPlus } from "lucide-react"
 
 export default function InsuranceMockup() {
-  //const [showPopup, setShowPopup] = useState(false)
-  //const [popupContent, setPopupContent] = useState("")
-  if (typeof window !== "undefined" && !window.digitalData) {
-    window.digitalData = []
-  }
-  //  const handleInteraction = (element: string) => {
-  //    setPopupContent(`dataLayer: { page: "${element}" }`)
-  //    setShowPopup(true)
-  //    setTimeout(() => setShowPopup(false), 2000)
-  //  }
+
 
   const handleInteraction = (element: string) => {
     const dataLayer = {
       interaction: {
-        eventType: "button",  
-        clickText: element,  
-        clickURL: window.location.href, 
-        search: {
-          autoSuggestSearchTerm: "",
-          searchTerm: element === "Search" ? "insurance" : "",
-          searchFilters: "",
-          searchResults: "",
-        },  
-        cardDescription: element.includes("Insurance") ? `Description of ${element}` : "",  
-        accordionAction: element.startsWith("FAQ") ? "Open" : "",  
-        interactionSection: element === "Search" ? "header" : "content",  
-        userRole: "", 
+        clickType: "button",
+        clickText: element,
+        clickSection: element === "Search" ? "header" : "content",
+        clickURL: window.location.href,
+        search: "",
       },
-      pageInfo: {
-        pageName: document.title, 
-        pageTitle: document.title,  
-        pageType: "Insurance Info",  
-        pageUrl: window.location.href,  
-        talid: "12345",  
-        mcode: "insurancePage",  
-        referrer: document.referrer,  
-        language: navigator.language, 
-        primaryCategory: "Insurance",  
-        subCategory1: "",  
-        subCategory2: "",  
-        subCategory3: "",  
-        site: {
+      page: {
+        pageInfo: {
+          pageName: document.title,
+          pageType: "Insurance Info",
+          pageUrl: window.location.href,
+          mcode: "insurancePage",
+          language: navigator.language,
+          primaryCategory: "Insurance",
+          subCategory1: "",
+          subCategory2: "",
+          subCategory3: "",
           brand: "Insurance Corp",
-          environment: "production",  
+          environment: "production",
           domain: window.location.hostname,
-        },
-      },
-      form: {
-        formName: "",
-        formStep: "",
-        formSubStep: "",
-        quoteId: "",
-        referenceNumber: "",
-        formAction: "",  
-        tpdCover: "",
-        traumaCover: "",
-        smoker: "",
-        state: "",
-        postcode: "",
-        occupation: "",
-        age: "",
-        gender: "",
-        amount: "",  
-        income: "",  
-        lifeCover: "",  
-        product: "",  
-        vertical: "", 
+          formName: "",
+          formStep: "",
+          formSubStep: "",
+          formSection: "",
+          quoteId: "",
+          applicationId: "",
+        }
       },
       user: {
-        email: "",  
-        phoneNumber: "",  
-        membershipType: "",  
-        membershipId: "",  
-        loginstatus: "",  
-        loginId: "",  
-        role: "", 
+        profileInfo: {
+          phoneNumber: "",
+          membershipType: "",
+          membershipTypeId: "",
+          loginstatus: "",
+        }
       },
-      event: "interaction",
+      event: "interaction"
     };
-  if (typeof window !== "undefined" && window.digitalData) {
-      window.digitalData.push(dataLayer)
-      console.log("Pushed to digitalData:", dataLayer)  // Optional: Log to verify it's being pushed
+
+    if (typeof window !== "undefined" && window.appEventData) {
+      window.appEventData.push(dataLayer)
+      console.log("Pushed to appEventData:", dataLayer)  // Optional: Log to verify it's being pushed
     }
   }
 
@@ -138,7 +103,7 @@ export default function InsuranceMockup() {
       <section className="p-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { title: "Pet Insurance", icon: PawPrint},
+            { title: "Pet Insurance", icon: PawPrint },
             { title: "Life Insurance", icon: Heart },
             { title: "Dental Insurance", icon: ClipboardPlus },
           ].map(({ title, icon: Icon }) => (
@@ -184,8 +149,8 @@ export default function InsuranceMockup() {
         </Accordion>
       </section>
 
-      
-     
+
+
     </div>
   )
 }

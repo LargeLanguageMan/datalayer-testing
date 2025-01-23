@@ -1,78 +1,50 @@
-
 // global.d.ts
 
-export {}
+export { }
 
 declare global {
-  interface DigitalDataEntry {
+  interface appEventDataEntry {
     interaction: {
-      eventType: string;
+      clickType: string;
       clickText: string;
+      clickSection: string;
       clickURL: string;
-      search: {
-        autoSuggestSearchTerm: string;
-        searchTerm: string;
-        searchFilters: string;
-        searchResults: string;
-      };
-      cardDescription: string;
-      accordionAction: string;
-      interactionSection: string;
-      userRole: string;
+      search: string;
     };
-    pageInfo: {
-      pageName: string;
-      pageTitle: string;
-      pageType: string;
-      pageUrl: string;
-      talid: string;
-      mcode: string;
-      referrer: string;
-      language: string;
-      primaryCategory: string;
-      subCategory1: string;
-      subCategory2: string;
-      subCategory3: string;
-      site: {
+    page: {
+      pageInfo: {
+        pageName: string;
+        pageType: string;
+        pageUrl: string;
+        mcode: string;
+        language: string;
+        primaryCategory: string;
+        subCategory1: string;
+        subCategory2: string;
+        subCategory3: string;
         brand: string;
         environment: string;
         domain: string;
-      };
-    };
-    form: {
-      formName: string;
-      formStep: string;
-      formSubStep: string;
-      quoteId: string;
-      referenceNumber: string;
-      formAction: string;
-      tpdCover: string;
-      traumaCover: string;
-      smoker: string;
-      state: string;
-      postcode: string;
-      occupation: string;
-      age: string;
-      gender: string;
-      amount: string;
-      income: string;
-      lifeCover: string;
-      product: string;
-      vertical: string;
+        formName: string;
+        formStep: string;
+        formSubStep: string;
+        formSection: string;
+        quoteId: string;
+        applicationId: string;
+      }
     };
     user: {
-      email: string;
-      phoneNumber: string;
-      membershipType: string;
-      membershipId: string;
-      loginstatus: string;
-      loginId: string;
-      role: string;
+      profileInfo: {
+        phoneNumber: string;
+        membershipType: string;
+        membershipTypeId: string;
+        loginstatus: string;
+      }
     };
     event: string;
   }
 
   interface Window {
-    digitalData: DigitalDataEntry[]; // Use the new type definition here
+    appEventData: appEventDataEntry[];
   }
 }

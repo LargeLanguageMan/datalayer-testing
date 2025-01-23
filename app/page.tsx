@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import LoginPage from './login-page'
-import { useAuth } from './useAuth'
 
 export default function Home() {
   const [loading, setLoading] = useState(true)

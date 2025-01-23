@@ -17,8 +17,8 @@ export default function Home() {
     return <div>Loading...</div>
   }
 
-  if (!isAuthenticated) {
-return <LoginPage />; 
+  if (!document.cookie.includes('session=authenticated-sessions')) {
+    return <LoginPage />
   }
 
   return (

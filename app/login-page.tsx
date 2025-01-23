@@ -18,9 +18,10 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
-
     if (username === "tal2024" && password === "monks2024") {
       // Successful login
+
+      document.cookie = `session=authenticated-sessions; path=/; max-age=3600`; // Set cookie for 1 hour
       router.push("/insurance-portal") // Redirect to dashboard or protected content
     } else {
       setError("Invalid username or password")

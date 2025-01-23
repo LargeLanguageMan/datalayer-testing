@@ -5,7 +5,6 @@ import LoginPage from './login-page'
 import { useAuth } from './useAuth'
 
 export default function Home() {
-  const { isAuthenticated } = useAuth()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

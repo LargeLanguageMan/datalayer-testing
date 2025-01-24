@@ -124,7 +124,7 @@ export default function InsuranceMockup() {
 
       {/* Button Section */}
       <section className="p-8 text-center">
-        <Button onClick={() => handleInteraction("CTA Button")}>Get a Quote Now</Button>
+        <Button onClick={() => handleInteraction("")}>Get a Quote Now</Button>
       </section>
 
       {/* FAQ Section */}

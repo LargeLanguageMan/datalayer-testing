@@ -30,6 +30,7 @@ export default function RootLayout({
         <Script
           src="https://assets.adobedtm.com/4ef014d90ea4/9205d627617f/launch-edd81ad3dafb-development.min.js"
           strategy="afterInteractive"
+          async
         />
       </head>
       <body

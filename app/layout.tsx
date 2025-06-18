@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script
-          src="https://assets.adobedtm.com/3236b84eee38/bbb580a28681/launch-9381a0dd24c6-development.min.js"
+          src="https://assets.adobedtm.com/4ef014d90ea4/9205d627617f/launch-edd81ad3dafb-development.min.js"
           strategy="afterInteractive"
         />
       </head>

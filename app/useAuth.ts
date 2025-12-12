@@ -1,29 +1,63 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export function useAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
-    // Check if the user is authenticated (e.g., by checking a token in localStorage)
-    const token = localStorage.getItem('authToken')
-    setIsAuthenticated(!!token)
+    // Verify authentication status with server
+    checkAuthStatus()
   }, [])
 
-  const login = (username: string, password: string) => {
-    if (username === 'tal2024' && password === 'monks2024') {
-      localStorage.setItem('authToken', 'dummy_token')
-      setIsAuthenticated(true)
-      return true
+  const checkAuthStatus = async () => {
+    try {
+      const response = await fetch('/api/auth/verify')
+      setIsAuthenticated(response.ok)
+    } catch (error) {
+      setIsAuthenticated(false)
+    } finally {
+      setIsLoading(false)
     }
-    return false
   }
 
-  const logout = () => {
-    localStorage.removeItem('authToken')
-    setIsAuthenticated(false)
+  const login = async (username: string, password: string): Promise<boolean> => {
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setIsAuthenticated(true)
+        return true
+      }
+      return false
+    } catch (error) {
+      return false
+    }
   }
 
-  return { isAuthenticated, login, logout }
+  const logout = async () => {
+    try {
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+      })
+      setIsAuthenticated(false)
+      router.push('/')
+      router.refresh()
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
+
+  return { isAuthenticated, isLoading, login, logout }
 }

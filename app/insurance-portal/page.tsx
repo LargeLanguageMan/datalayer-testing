@@ -1,19 +1,8 @@
-"use client"
-
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import InsuranceMockup from '../insurance-mockup'
 
+// This is now a server component - authentication is handled by middleware
+// Middleware will redirect to home if not authenticated
 export default function InsurancePortal() {
-  const router = useRouter()
-
-  useEffect(() => {
-    // Check if the authentication cookie exists
-    if (!document.cookie.includes('session=authenticated-sessions')) {
-      router.push('/') // Redirect to home page if not authenticated
-    }
-  }, [router])
-
   return (
     <main>
       <InsuranceMockup />

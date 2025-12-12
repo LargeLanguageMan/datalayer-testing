@@ -13,18 +13,37 @@ export default function LoginPage() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
-    if (username === "tal2024" && password === "monks2024") {
-      // Successful login
+    setIsLoading(true)
 
-      document.cookie = `session=authenticated-sessions; path=/; max-age=3600`; // Set cookie for 1 hour
-      router.push("/insurance-portal") // Redirect to dashboard or protected content
-    } else {
-      setError("Invalid username or password")
+    try {
+      // Send credentials to server-side API route for validation
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        // Successful login - cookie is set server-side with secure flags
+        router.push("/insurance-portal")
+        router.refresh() // Refresh to update server components
+      } else {
+        setError(data.error || "Invalid username or password")
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again.")
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -67,8 +86,8 @@ export default function LoginPage() {
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
-            <Button type="submit" className="w-full mt-4">
-              Login
+            <Button type="submit" className="w-full mt-4" disabled={isLoading}>
+              {isLoading ? "Logging in..." : "Login"}
             </Button>
           </form>
         </CardContent>

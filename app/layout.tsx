@@ -28,6 +28,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/*
+          Adobe DTM Script
+          Note: Third-party scripts pose security risks. This script loads Adobe Tag Manager.
+          For production:
+          1. Verify this URL is still needed and authorized
+          2. Consider using a tag management solution with better security controls
+          3. Implement Content Security Policy (CSP) headers
+          4. Regular security audits of third-party scripts
+          5. Use SRI hash if Adobe provides stable versioned URLs
+        */}
         <Script
           src="https://assets.adobedtm.com/4ef014d90ea4/9205d627617f/launch-798188fd51d6-development.min.js"
           strategy="afterInteractive"
